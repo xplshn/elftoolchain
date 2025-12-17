@@ -1,0 +1,137 @@
+.\" Copyright (c) 2012,2024 Joseph Koshy.  All rights reserved.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\"
+.\" This software is provided by Joseph Koshy ``as is'' and
+.\" any express or implied warranties, including, but not limited to, the
+.\" implied warranties of merchantability and fitness for a particular purpose
+.\" are disclaimed.  in no event shall Joseph Koshy be liable
+.\" for any direct, indirect, incidental, special, exemplary, or consequential
+.\" damages (including, but not limited to, procurement of substitute goods
+.\" or services; loss of use, data, or profits; or business interruption)
+.\" however caused and on any theory of liability, whether in contract, strict
+.\" liability, or tort (including negligence or otherwise) arising in any way
+.\" out of the use of this software, even if advised of the possibility of
+.\" such damage.
+.\"
+.\" $Id$
+.\"
+.Dd December 27, 2024
+.Dt ELFTC 3
+.Os
+.Sh NAME
+.Nm elftc
+.Nd support routines used in the Elftoolchain project
+.Sh LIBRARY
+.Lb libelftc
+.Sh SYNOPSIS
+.In libelftc.h
+.Sh DESCRIPTION
+The
+.Lb libelftc
+provides support routines used for developing the utilities in the
+Elftoolchain source tree.
+.Pp
+This manual page serves as an overview of the functionality in this
+library.
+Additional reference information may be found in the individual
+manual pages for the functions listed below.
+.Ss Functional Grouping
+.Bl -tag -width indent
+.It "Binary Object Handling"
+.Bl -tag -compact -width indent
+.It Fn elftc_bfd_find_target
+Locate a binary object descriptor.
+.It Fn elftc_bfd_target_byteorder
+Query the byte order for a binary object descriptor.
+.It Fn elftc_bfd_target_class
+Query the ELF class for a binary object descriptor.
+.It Fn elftc_bfd_target_flavor
+Query the object format for a binary object descriptor.
+.It Fn elftc_bfd_target_machine
+Query the target machine for a binary object descriptor.
+.It Fn elftc_bfd_target_osabi
+Query the target osabi for a binary object descriptor.
+.El
+.It "C++ support"
+.Bl -tag -compact -width indent
+.It Fn elftc_demangle
+Decodes a symbol name encoded according to the encoding rules for the
+C++ language.
+.El
+.It "ELF constants and symbols"
+.Bl -tag -compact -width indent
+.It Fn elftc_reloc_type_str
+Return the type name for an ELF relocation.
+.El
+.It "ELF string table support"
+.Bl -tag -compact -width indent
+.It Fn elftc_string_table_create
+Creates a new, empty, string table.
+.It Fn elftc_string_table_destroy
+Destroys a previously allocated string table.
+.It Fn elftc_string_table_from_section
+Creates a new string table from the contents of an ELF section.
+.It Fn elftc_string_table_image
+Returns the ELF representation of a string table.
+.It Fn elftc_string_table_insert
+Inserts a string into a string table.
+.It Fn elftc_string_table_lookup
+Looks up a string in a string table.
+.It Fn elftc_string_table_remove
+Removes a string from a string table.
+.It Fn elftc_string_table_to_string
+Converts a string table offset to a pointer to a
+.Dv NUL Ns - Ns
+terminated string.
+.El
+.It "Programming conveniences"
+.Bl -tag -compact -width indent
+.It Fn elftc_copyfile
+Copies the contents of a file to another.
+.It Fn elftc_set_timestamps
+Portably set time stamps on a file.
+.El
+.It "Project Configuration"
+.Bl -tag -compact -width indent
+.It Fn elftc_version
+Returns a project-wide identifier string that encodes the source
+revision of the source tree.
+.El
+.It "Reproducible builds"
+.Bl -tag -compact -width indent
+.It Fn elftc_timestamp
+Returns the timestamp supplied by the
+.Ev SOURCE_DATE_EPOCH
+environment variable if it exists, or otherwise returns the current
+time returned by
+.Xr time 3 .
+.El
+.El
+.Sh SEE ALSO
+.Xr dwarf 3 ,
+.Xr elf 3 ,
+.Xr elftc_bfd_find_target 3 ,
+.Xr elftc_bfd_target_byteorder 3 ,
+.Xr elftc_bfd_target_class 3 ,
+.Xr elftc_bfd_target_flavor 3 ,
+.Xr elftc_bfd_target_machine 3 ,
+.Xr elftc_bfd_target_osabi 3 ,
+.Xr elftc_copyfile 3 ,
+.Xr elftc_reloc_type_str 3 ,
+.Xr elftc_string_table_create 3 ,
+.Xr elftc_string_table_destroy 3 ,
+.Xr elftc_string_table_from_section 3 ,
+.Xr elftc_string_table_image 3 ,
+.Xr elftc_string_table_insert 3 ,
+.Xr elftc_string_table_lookup 3 ,
+.Xr elftc_string_table_remove 3 ,
+.Xr elftc_string_table_to_string 3 ,
+.Xr elftc_timestamp 3
